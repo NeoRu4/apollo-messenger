@@ -13,11 +13,11 @@ const Wrapper = styled.div`
 `;
 
 export const App = () => {
-  return (
-    <Wrapper>
-      <MessageHeader />
-      <MessageList />
-      <MessageInput />
-    </Wrapper>
-  );
+    return (
+        <Wrapper>
+            <MessageHeader />
+            <MessageList />
+            <MessageInput />
+        </Wrapper>
+    );
 };
