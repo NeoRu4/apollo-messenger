@@ -1,11 +1,25 @@
-import { ApolloServer } from "apollo-server";
-import { connection } from "./database/sql-lite.database";
-import { schema } from "./graphql";
+import { ApolloServer } from 'apollo-server';
+import { connection } from './database/sql-lite.database';
+import { schema } from './graphql';
 
-connection.then().catch();
+connection.then().catch(error => {
+    console.error(error);
+});
 
-const server = new ApolloServer({ schema });
+const server = new ApolloServer({
+    schema,
+    subscriptions: {
+        path: '/subs',
+        onConnect: () => {
+            console.log('Client connected');
+        },
+        onDisconnect: () => {
+            console.log('Client disconnected');
+        },
+    },
+});
 
-server.listen().then(({ url }) => {
-  console.log(`🚀 Server ready at ${url}`);
+server.listen({ port: 4200 }).then(({ url, subscriptionsUrl }) => {
+    console.log(`🚀 Server ready at ${url}`);
+    console.log(`🚀 Subscriptions ready at ${subscriptionsUrl}`);
 });

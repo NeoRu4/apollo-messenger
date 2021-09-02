@@ -41,44 +41,44 @@ const SET_MESSAGE = gql`
 `;
 
 export const MessageInput = () => {
-  const sendButton = useRef<HTMLButtonElement>(null);
+    const sendButton = useRef<HTMLButtonElement>(null);
 
-  const [message, setMessage] = useState<string>("");
+    const [message, setMessage] = useState<string>("");
 
-  const [sendMessage] = useMutation(SET_MESSAGE);
+    const [sendMessage] = useMutation(SET_MESSAGE);
 
-  const handleSend = () => {
-    sendMessage({
-      variables: {
-        message: {
-          text: message,
-        },
-      },
-    })
-      .then(() => {
-        setMessage("");
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
+    const handleSend = () => {
+        sendMessage({
+            variables: {
+                message: {
+                    text: message,
+                },
+            },
+        })
+            .then(() => {
+                setMessage("");
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
 
-  return (
-    <Wrapper>
-      <Input
-        value={message}
-        onChange={(event) => {
-          setMessage(event.target.value);
-        }}
-        onKeyDown={(event) => {
-          if (event.key === "Enter") {
-            sendButton.current?.click();
-          }
-        }}
-      />
-      <Button ref={sendButton} onClick={handleSend}>
+    return (
+        <Wrapper>
+            <Input
+                value={message}
+                onChange={(event) => {
+                    setMessage(event.target.value);
+                }}
+                onKeyDown={(event) => {
+                    if (event.key === "Enter") {
+                        sendButton.current?.click();
+                    }
+                }}
+            />
+            <Button ref={sendButton} onClick={handleSend}>
         Отправить
-      </Button>
-    </Wrapper>
-  );
+            </Button>
+        </Wrapper>
+    );
 };

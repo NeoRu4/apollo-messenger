@@ -8,9 +8,9 @@ const Wrapper = styled.div`
 `;
 
 export const MessageHeader = () => {
-  return (
-    <Wrapper>
-      <h3>Сообщения</h3>
-    </Wrapper>
-  );
+    return (
+        <Wrapper>
+            <h3>Сообщения</h3>
+        </Wrapper>
+    );
 };
